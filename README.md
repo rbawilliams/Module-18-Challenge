@@ -28,8 +28,8 @@ amount = st.text_input("Amount")
 ### Step 4: Test the PyChain Ledger by Storing Records
 For this task, I entered values for the sender, receiver, and amount multiple times to add transactions to the blockchain. After inputting the values, I clicked on the "Validate" button, which resulted in a confirmation that the blockchain was valid (result = True). You can refer to the screenshots below for a visual representation of the process.
 
-![alt=""](Starter_Code/Instructions/Images/pychain_addblock.png)
-![alt=""](Starter_Code/Instructions/Images/validated.png.png)
+![alt=""](pychain_addblock.png)
+![alt=""](validated.png.png)
 
 ## Conclusion
 The PyChain ledger system has been successfully built, allowing partner banks to conduct financial transactions and verify the integrity of the data in the ledger. With the user-friendly web interface built using Streamlit, users can easily input the relevant information for each financial transaction, making it easy to store and verify data on the blockchain-based ledger system.
