@@ -1,6 +1,6 @@
 # PyChain Ledger
 
-![alt=""](Images/application-image.png)
+![alt=""](18-4-application-image.png)
 
 As a fintech engineer, the task was to build a blockchain-based ledger system with a user-friendly web interface that will allow partner banks to conduct financial transactions and verify the integrity of the data in the ledger. The project involved creating a new data class named Record, replacing the existing generic data attribute with a record attribute of type Record in the Block data class, and creating additional user input areas in the Streamlit application to collect relevant information for each financial record to be stored in the PyChain ledger.
 
