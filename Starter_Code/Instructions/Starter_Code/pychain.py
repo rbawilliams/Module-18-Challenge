@@ -27,8 +27,8 @@ import streamlit as st
 from dataclasses import dataclass
 from typing import Any, List
 import datetime as datetime
-import pandas as pd
 import hashlib
+import pandas as pd
 
 ################################################################################
 # Step 1:
@@ -49,8 +49,11 @@ import hashlib
 # @TODO
 # Create a Record Data Class that consists of the `sender`, `receiver`, and
 # `amount` attributes
-# YOUR CODE HERE
-
+@dataclass
+class Record:
+    sender: str
+    receiver: str
+    amount: float
 
 ################################################################################
 # Step 2:
@@ -63,13 +66,11 @@ import hashlib
 # 2. Set the data type of the `record` attribute to `Record`.
 
 
-@dataclass
-class Block:
-
     # @TODO
     # Rename the `data` attribute to `record`, and set the data type to `Record`
-    data: Any
-
+@dataclass
+class Block:
+    record: Record  # Rename data to record and set the data type to Record
     creator_id: int
     prev_hash: str = "0"
     timestamp: str = datetime.datetime.utcnow().strftime("%H:%M:%S")
@@ -130,7 +131,7 @@ class PyChain:
 
             block_hash = block.hash_block()
 
-        print("Blockchain is Valid")
+            print("Blockchain is Valid")
         return True
 
 ################################################################################
@@ -138,6 +139,9 @@ class PyChain:
 
 # Adds the cache decorator for Streamlit
 
+record = Record(datetime.now(), "Sample Data")
+pychain = PyChain()
+new_block = Block(record, len(pychain.chain), 100.00)
 
 @st.cache(allow_output_mutation=True)
 def setup():
@@ -166,19 +170,19 @@ pychain = setup()
 
 # @TODO:
 # Delete the `input_data` variable from the Streamlit interface.
-input_data = st.text_input("Block Data")
+#input_data = st.text_input("Block Data")
 
 # @TODO:
 # Add an input area where you can get a value for `sender` from the user.
-# YOUR CODE HERE
+sender = st.text_input("Sender")
 
 # @TODO:
 # Add an input area where you can get a value for `receiver` from the user.
-# YOUR CODE HERE
+receiver = st.text_input("Receiver")
 
 # @TODO:
 # Add an input area where you can get a value for `amount` from the user.
-# YOUR CODE HERE
+amount = st.number_input("Amount")
 
 if st.button("Add Block"):
     prev_block = pychain.chain[-1]
@@ -189,11 +193,13 @@ if st.button("Add Block"):
     # which is set equal to a `Record` that contains the `sender`, `receiver`,
     # and `amount` values
     new_block = Block(
-        data=input_data,
+        record=Record(sender, receiver, amount),
+        #data=inout_data,
         creator_id=42,
         prev_hash=prev_block_hash
     )
-
+    
+    
     pychain.add_block(new_block)
     st.balloons()
 
